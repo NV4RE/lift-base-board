@@ -13,7 +13,7 @@ import (
 
 var (
 	ErrRespondNotMatch = errors.New("respond not match")
-	ErrSerialNotFound = errors.New("serial not found")
+	ErrSerialNotFound  = errors.New("serial not found")
 )
 
 type BaseBoard struct {
@@ -137,7 +137,7 @@ func (bb BaseBoard) GetSerialBufferCount() ([]byte, error) {
 	return res, nil
 }
 
-func (bb BaseBoard) GetSerialBufferData(id int,  count byte) ([]byte, error) {
+func (bb BaseBoard) GetSerialBufferData(id int, count byte) ([]byte, error) {
 	var cmd Command
 	switch id {
 	case 1:
@@ -184,7 +184,7 @@ func (bb BaseBoard) sendCommand(cmd Command, data []byte) ([]byte, error) {
 	return res[1:], nil
 }
 
-func NewBaseBoard(dev string, addr int) (*BaseBoard, error) {
+func NewBaseBoard(dev string, addr uint16) (*BaseBoard, error) {
 	if _, err := driverreg.Init(); err != nil {
 		return nil, err
 	}
@@ -194,7 +194,7 @@ func NewBaseBoard(dev string, addr int) (*BaseBoard, error) {
 		return nil, err
 	}
 
-	d := &i2c.Dev{Addr: 23, Bus: b}
+	d := &i2c.Dev{Addr: addr, Bus: b}
 
 	return &BaseBoard{
 		dev: d,
