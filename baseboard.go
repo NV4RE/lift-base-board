@@ -160,6 +160,29 @@ func (bb BaseBoard) GetSerialBufferData(id int, count byte) ([]byte, error) {
 	return res, nil
 }
 
+func (bb BaseBoard) WriteSerialBufferData(id int, count byte) ([]byte, error) {
+	var cmd Command
+	switch id {
+	case 1:
+		cmd = CommandWriteBuffer1
+	case 2:
+		cmd = CommandWriteBuffer2
+	case 3:
+		cmd = CommandWriteBuffer3
+	case 4:
+		cmd = CommandWriteBuffer4
+	default:
+		return nil, ErrSerialNotFound
+	}
+
+	res, err := bb.sendCommand(cmd, make([]byte, count))
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
 func (bb BaseBoard) sendSetCommand(cmd Command, data []byte) error {
 	res, err := bb.sendCommand(cmd, data)
 	if err != nil {

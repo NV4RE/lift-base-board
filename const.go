@@ -19,9 +19,13 @@ const (
 	CommandReadVinLevel    Command = 0x10
 	CommandReactDipsSwitch Command = 0x11
 
-	CommandBufferCount Command = 0x12
-	CommandReadBuffer1 Command = 0x13
-	CommandReadBuffer2 Command = 0x14
-	CommandReadBuffer3 Command = 0x15
-	CommandReadBuffer4 Command = 0x16
+	CommandBufferCount  Command = 0x12
+	CommandReadBuffer1  Command = 0x13
+	CommandReadBuffer2  Command = 0x14
+	CommandReadBuffer3  Command = 0x15
+	CommandReadBuffer4  Command = 0x16
+	CommandWriteBuffer1 Command = 0x17
+	CommandWriteBuffer2 Command = 0x18
+	CommandWriteBuffer3 Command = 0x19
+	CommandWriteBuffer4 Command = 0x20
 )
